@@ -46,7 +46,8 @@ body.loaded {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("./assets/images/background.png");
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);  /* Fallback gradient */
+  background-image: url("./assets/images/background.png");  /* Your image on top */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -54,19 +55,8 @@ body.loaded {
   z-index: -1;
 }
 
-/* Fallback gradient if image doesn't load */
-.background-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  z-index: -2;
-}
+/* Removed the ::before gradient overlay that was blocking your image */
 
-/* Optional overlay for better text readability */
 .background-container::after {
   content: "";
   position: absolute;
@@ -74,7 +64,7 @@ body.loaded {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0);  /* Temporarily removed dark overlay */
   z-index: 0;
 }
 
@@ -593,6 +583,58 @@ body.loaded {
 }
 
 /* ===================================
+   Snow Fountain (Mouse Cursor Effect)
+   =================================== */
+
+.snow-fountain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.snow-particle {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.4);
+  animation: snowFountainFall linear forwards;
+}
+
+/* Snowflake animation with gravity effect */
+@keyframes snowFountainFall {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    /* Use CSS custom properties set by JavaScript */
+    transform: translate(
+        calc(var(--vx) * 1),
+        calc(var(--vy) * 1 + 200px)
+      )
+      rotate(var(--rotation));
+    opacity: 0;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .snow-particle {
+    animation: none;
+    display: none;
+  }
+}
+
+/* ===================================
    Print Styles
    =================================== */
 
@@ -600,7 +642,8 @@ body.loaded {
   .background-container,
   .audio-controls,
   .footer,
-  .elves-container {
+  .elves-container,
+  .snow-fountain {
     display: none;
   }
 
