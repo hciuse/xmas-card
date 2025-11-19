@@ -21,6 +21,9 @@
     <!-- Dancing Elves Container -->
     <div id="elvesContainer" class="elves-container" aria-hidden="true"></div>
 
+    <!-- Snow Fountain Container -->
+    <div id="snowFountain" class="snow-fountain" aria-hidden="true"></div>
+
     <!-- Main Card Content -->
     <main class="card-container">
       <div class="card">
@@ -204,6 +207,90 @@
         });
 
         console.log(`Created ${FACE_IMAGES.length} dancing elves!`);
+      }
+
+      // ==========================================
+      // Snow Fountain (follows mouse cursor)
+      // ==========================================
+
+      const snowFountain = document.getElementById("snowFountain");
+      let lastMouseX = 0;
+      let lastMouseY = 0;
+      let isMouseMoving = false;
+      let fountainInterval = null;
+
+      // Track mouse position
+      document.addEventListener("mousemove", (e) => {
+        lastMouseX = e.clientX;
+        lastMouseY = e.clientY;
+
+        if (!isMouseMoving) {
+          isMouseMoving = true;
+          startSnowFountain();
+        }
+      });
+
+      // Stop fountain when mouse stops moving
+      let mouseStopTimeout;
+      document.addEventListener("mousemove", () => {
+        clearTimeout(mouseStopTimeout);
+        mouseStopTimeout = setTimeout(() => {
+          isMouseMoving = false;
+          stopSnowFountain();
+        }, 100);
+      });
+
+      function startSnowFountain() {
+        if (fountainInterval) return;
+
+        fountainInterval = setInterval(() => {
+          if (isMouseMoving) {
+            createSnowParticle(lastMouseX, lastMouseY);
+          }
+        }, 50); // Create particle every 50ms
+      }
+
+      function stopSnowFountain() {
+        if (fountainInterval) {
+          clearInterval(fountainInterval);
+          fountainInterval = null;
+        }
+      }
+
+      function createSnowParticle(x, y) {
+        const particle = document.createElement("div");
+        particle.className = "snow-particle";
+
+        // Random fountain angle (upward cone)
+        const angle = (Math.random() * 60 - 30) * (Math.PI / 180); // -30 to +30 degrees
+        const velocity = 100 + Math.random() * 100; // pixels per second
+
+        // Calculate velocity components
+        const vx = Math.sin(angle) * velocity;
+        const vy = -Math.abs(Math.cos(angle)) * velocity; // Always upward
+
+        // Random particle characteristics
+        const size = 4 + Math.random() * 6; // 4-10px
+        const rotation = Math.random() * 360;
+        const duration = 1 + Math.random() * 0.5; // 1-1.5 seconds
+
+        // Style the particle
+        particle.style.left = `${x}px`;
+        particle.style.top = `${y}px`;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.setProperty("--vx", `${vx}px`);
+        particle.style.setProperty("--vy", `${vy}px`);
+        particle.style.setProperty("--rotation", `${rotation}deg`);
+        particle.style.animationDuration = `${duration}s`;
+
+        // Add to DOM
+        snowFountain.appendChild(particle);
+
+        // Remove after animation completes
+        setTimeout(() => {
+          particle.remove();
+        }, duration * 1000);
       }
 
       // ==========================================
