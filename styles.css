@@ -377,21 +377,19 @@ body.loaded {
   will-change: transform;
 }
 
-/* Dancing animation - moves around the screen */
+/* Dancing animation - moves around in circles */
 @keyframes dance {
   0% {
     transform: translate(0, 0) rotate(0deg) scale(1);
   }
   25% {
-    transform: translate(calc(100vw - 100px), calc(20vh)) rotate(10deg)
-      scale(1.1);
+    transform: translate(150px, -100px) rotate(10deg) scale(1.1);
   }
   50% {
-    transform: translate(calc(80vw - 100px), calc(70vh)) rotate(-10deg)
-      scale(0.9);
+    transform: translate(200px, 50px) rotate(-10deg) scale(0.9);
   }
   75% {
-    transform: translate(calc(20vw), calc(40vh)) rotate(15deg) scale(1.05);
+    transform: translate(-100px, 100px) rotate(15deg) scale(1.05);
   }
   100% {
     transform: translate(0, 0) rotate(0deg) scale(1);
