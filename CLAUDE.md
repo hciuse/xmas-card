@@ -30,6 +30,7 @@ This is a **simple static HTML Christmas card** that can be sent to friends. It'
 - Static HTML/CSS/JavaScript (no build process required)
 - Background image support (customizable by replacing image file)
 - MP3 audio playback from assets folder
+- **Dancing Christmas elves with face photos** (NEW!)
 - Festive holiday greeting message
 - Responsive design for viewing on any device
 - Easy to customize and share
@@ -49,7 +50,10 @@ This is a **simple static HTML Christmas card** that can be sent to friends. It'
 xmas-card/
 ├── assets/                 # Asset files
 │   ├── images/            # Background images
-│   │   └── background.jpg # Main background image (replace to customize)
+│   │   ├── background.jpg # Main background image (replace to customize)
+│   │   └── faces/         # Face photos for dancing elves
+│   │       ├── *.jpg/png  # Place face photos here
+│   │       └── README.md  # Instructions for face photos
 │   └── audio/             # Audio files
 │       └── music.mp3      # Christmas music (replace to customize)
 ├── styles.css             # All styling for the card
@@ -64,6 +68,7 @@ xmas-card/
 - **index.html** - Main HTML file containing the Christmas card structure
 - **styles.css** - All CSS styling and animations
 - **assets/images/background.jpg** - Background image (replace this file to change background)
+- **assets/images/faces/** - Folder for face photos that appear on dancing elves
 - **assets/audio/music.mp3** - Christmas music (replace this file to change music)
 - **.gitignore** - Excludes large media files from git tracking
 - **README.md** - Instructions for customizing and using the card
@@ -258,6 +263,20 @@ open index.html
 1. Replace `assets/audio/music.mp3` with your own audio file
 2. Keep the same filename or update the path in `index.html`
 3. Supported formats: MP3, OGG, WAV
+
+**Add Dancing Elves with Face Photos:**
+1. Place face photos (JPG/PNG) in `assets/images/faces/` folder
+2. Open `index.html` and find the `FACE_IMAGES` array (around line 70)
+3. Add your image filenames to the array:
+   ```javascript
+   const FACE_IMAGES = [
+       'mom.jpg',
+       'dad.png',
+       'friend.jpg',
+   ];
+   ```
+4. Save and refresh browser - elves will dance around the screen!
+5. Recommended: 3-8 face photos, square images (200x200 to 500x500px)
 
 **Edit Greeting Message:**
 1. Open `index.html` in any text editor
@@ -515,15 +534,16 @@ Before committing, verify:
 - [x] Set up CSS styling
 - [x] Create assets folders
 
-### Phase 2: Core Features (Current)
-- [ ] Add background image display
-- [ ] Implement audio player
-- [ ] Add greeting message
-- [ ] Style with festive theme
+### ✅ Phase 2: Core Features (Complete)
+- [x] Add background image display
+- [x] Implement audio player
+- [x] Add greeting message
+- [x] Style with festive theme
+- [x] Add dancing elves with face photos
 
-### Phase 3: Polish
-- [ ] Add animations (snowfall, sparkles, etc.)
-- [ ] Mobile responsive design
+### Phase 3: Polish (Current)
+- [x] Add animations (dancing elves, floating snowflakes, etc.)
+- [x] Mobile responsive design
 - [ ] Cross-browser testing
 - [ ] Performance optimization
 
@@ -555,6 +575,16 @@ Before committing, verify:
 ---
 
 ## Changelog
+
+### Added Dancing Elves Feature - 2025-11-19
+- Added dancing Christmas elves that display face photos
+- Elves move around the screen with various animations
+- Includes hat wiggling, body bouncing, and leg kicking animations
+- CSS-only elf design (no external images needed)
+- Face photos loaded from assets/images/faces/ folder
+- Configurable via FACE_IMAGES array in index.html
+- Mobile responsive elf sizing
+- Updated documentation with setup instructions
 
 ### Updated with Actual Scope - 2025-11-19
 - Updated to reflect static HTML Christmas card project

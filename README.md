@@ -8,6 +8,7 @@ A beautiful, personalized static HTML Christmas card that you can send to friend
 
 - 🖼️ **Customizable Background** - Add your own festive image
 - 🎵 **Holiday Music** - Play your favorite Christmas song
+- 🎅 **Dancing Elves** - Add photos of faces on animated Christmas elves!
 - 📱 **Fully Responsive** - Works on desktop, tablet, and mobile
 - ♿ **Accessible** - Keyboard navigation and screen reader support
 - 🚀 **No Build Required** - Pure HTML/CSS/JavaScript
@@ -74,7 +75,53 @@ A beautiful, personalized static HTML Christmas card that you can send to friend
 - [YouTube Audio Library](https://www.youtube.com/audiolibrary)
 - [Incompetech](https://incompetech.com/music/royalty-free/)
 
-### 3. Personalize the Message
+### 3. Add Dancing Elves with Face Photos! 🎅
+
+Make your card extra fun by adding photos of people's faces on dancing Christmas elves!
+
+**Step 1: Add Face Photos**
+1. Place face photos in the `assets/images/faces/` folder
+2. Supported formats: JPG, PNG, GIF, WebP
+3. Recommended: 200x200 to 500x500 pixels, square images work best
+4. Keep each file under 200KB
+
+**Step 2: Configure the Elf List**
+1. Open `index.html` in a text editor
+2. Find the `FACE_IMAGES` array (around line 70)
+3. Add your image filenames to the array:
+   ```javascript
+   const FACE_IMAGES = [
+       'mom.jpg',
+       'dad.png',
+       'sister.jpg',
+       'friend.png',
+   ];
+   ```
+4. Save and refresh your browser
+
+**Tips:**
+- Use clear, well-lit face photos for best results
+- Square headshots work better than full-body photos
+- PNG with transparent background looks great!
+- Remove background using [Remove.bg](https://www.remove.bg/) (free)
+- Add 3-8 faces for the best effect (too many can clutter the screen)
+
+**How It Works:**
+- Each face photo appears on a Christmas elf body
+- Elves dance and move around the screen
+- Each elf has a red Santa hat, green outfit, and festive shoes
+- Animations include bouncing, wiggling hats, and kicking legs
+
+**Example folder structure:**
+```
+assets/images/faces/
+├── mom.jpg
+├── dad.png
+├── sister.jpg
+└── friend.png
+```
+
+### 4. Personalize the Message
 
 Open `index.html` and edit the text:
 
@@ -97,7 +144,7 @@ Open `index.html` and edit the text:
 <strong>Your Name</strong>
 ```
 
-### 4. Customize Colors and Styling
+### 5. Customize Colors and Styling
 
 Open `styles.css` and modify the CSS variables at the top (lines 7-13):
 
@@ -155,6 +202,10 @@ xmas-card/
 └── assets/
     ├── images/
     │   ├── background.jpg  # Your background image (add this)
+    │   ├── faces/          # Face photos for dancing elves
+    │   │   ├── mom.jpg     # Example face photos
+    │   │   ├── dad.png
+    │   │   └── README.md
     │   └── README.md       # Instructions for images
     └── audio/
         ├── music.mp3       # Your Christmas music (add this)
@@ -187,9 +238,16 @@ Works in all modern browsers:
 
 **Audio not playing?**
 - Check the file exists in `assets/audio/`
-- Verify the filename matches in `index.html` (line 45)
+- Verify the filename matches in `index.html` (line 51)
 - Note: Most browsers require clicking "Play Music" button
 - Try a different audio format if needed
+
+**Elves not appearing?**
+- Make sure you added filenames to the `FACE_IMAGES` array in `index.html`
+- Check that face photos exist in `assets/images/faces/` folder
+- Verify filenames match exactly (including extensions)
+- Open browser console (F12) to check for errors
+- Check the console message: "Created X dancing elves!"
 
 **Card looks broken?**
 - Clear browser cache (Ctrl+F5 or Cmd+Shift+R)

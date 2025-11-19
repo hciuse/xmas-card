@@ -354,13 +354,248 @@ body.loaded {
 }
 
 /* ===================================
+   Dancing Elves
+   =================================== */
+
+.elves-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.elf {
+    position: absolute;
+    width: 80px;
+    height: 120px;
+    animation: dance linear infinite;
+    will-change: transform;
+}
+
+/* Dancing animation - moves around the screen */
+@keyframes dance {
+    0% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+    25% {
+        transform: translate(calc(100vw - 100px), calc(20vh)) rotate(10deg) scale(1.1);
+    }
+    50% {
+        transform: translate(calc(80vw - 100px), calc(70vh)) rotate(-10deg) scale(0.9);
+    }
+    75% {
+        transform: translate(calc(20vw), calc(40vh)) rotate(15deg) scale(1.05);
+    }
+    100% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+}
+
+/* Elf body structure */
+.elf__body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* Elf hat */
+.elf__hat {
+    width: 50px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--primary-red), #a01828);
+    border-radius: 50% 50% 0 0;
+    position: relative;
+    margin-bottom: -5px;
+    z-index: 2;
+    animation: wiggle 0.5s ease-in-out infinite;
+}
+
+.elf__hat::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 15px;
+    height: 15px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Hat tip */
+.elf__hat::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background: var(--primary-red);
+    border-radius: 50%;
+    transform: translate(10px, -10px);
+}
+
+@keyframes wiggle {
+    0%, 100% {
+        transform: rotate(-3deg);
+    }
+    50% {
+        transform: rotate(3deg);
+    }
+}
+
+/* Face with photo */
+.elf__face {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #ffd4a3;
+    border: 3px solid var(--primary-gold);
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.elf__photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Elf body/torso */
+.elf__body-main {
+    width: 50px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--primary-green), #0a5a2f);
+    border-radius: 0 0 10px 10px;
+    margin-top: -5px;
+    position: relative;
+    z-index: 0;
+    animation: bounce 0.6s ease-in-out infinite;
+}
+
+/* Gold buttons */
+.elf__body-main::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background: var(--primary-gold);
+    border-radius: 50%;
+    box-shadow: 0 15px 0 var(--primary-gold);
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+/* Legs container */
+.elf__legs {
+    display: flex;
+    gap: 10px;
+    margin-top: -2px;
+}
+
+.elf__leg {
+    width: 15px;
+    height: 25px;
+    background: linear-gradient(to bottom, var(--primary-green), #0a5a2f);
+    border-radius: 0 0 8px 8px;
+    position: relative;
+}
+
+/* Shoes */
+.elf__leg::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 20px;
+    height: 12px;
+    background: var(--primary-red);
+    border-radius: 50% 0 0 50%;
+    border: 2px solid var(--primary-gold);
+}
+
+/* Alternating leg animation */
+.elf__leg--left {
+    animation: kickLeft 0.4s ease-in-out infinite;
+}
+
+.elf__leg--right {
+    animation: kickRight 0.4s ease-in-out infinite;
+    animation-delay: 0.2s;
+}
+
+@keyframes kickLeft {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(-15deg);
+    }
+}
+
+@keyframes kickRight {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(15deg);
+    }
+}
+
+/* Responsive sizing for smaller screens */
+@media (max-width: 768px) {
+    .elf {
+        width: 60px;
+        height: 90px;
+    }
+
+    .elf__hat {
+        width: 40px;
+        height: 30px;
+    }
+
+    .elf__face {
+        width: 45px;
+        height: 45px;
+    }
+
+    .elf__body-main {
+        width: 40px;
+        height: 30px;
+    }
+}
+
+/* ===================================
    Print Styles
    =================================== */
 
 @media print {
     .background-container,
     .audio-controls,
-    .footer {
+    .footer,
+    .elves-container {
         display: none;
     }
 

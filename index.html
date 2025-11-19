@@ -11,6 +11,9 @@
     <!-- Background Image Container -->
     <div class="background-container" role="img" aria-label="Festive Christmas background"></div>
 
+    <!-- Dancing Elves Container -->
+    <div id="elvesContainer" class="elves-container" aria-hidden="true"></div>
+
     <!-- Main Card Content -->
     <main class="card-container">
         <div class="card">
@@ -59,8 +62,25 @@
         <p class="footer__text">Made with ❤️ for the holidays</p>
     </footer>
 
-    <!-- JavaScript for Audio Control -->
+    <!-- JavaScript for Audio Control and Dancing Elves -->
     <script>
+        // ==========================================
+        // CONFIGURATION: Add your face image filenames here!
+        // ==========================================
+        const FACE_IMAGES = [
+            // Add your face photo filenames here (they should be in assets/images/faces/)
+            // Example:
+            // 'mom.jpg',
+            // 'dad.png',
+            // 'sister.jpg',
+            // 'brother.png',
+            // 'grandma.jpg',
+            // 'friend.png',
+        ];
+
+        // ==========================================
+        // Audio Control
+        // ==========================================
         const audio = document.getElementById('christmasMusic');
         const toggleButton = document.getElementById('audioToggle');
         const buttonText = toggleButton.querySelector('.button-text');
@@ -103,9 +123,80 @@
             toggleButton.classList.add('disabled');
         });
 
-        // Add fade-in animation on load
+        // ==========================================
+        // Dancing Elves
+        // ==========================================
+
+        /**
+         * Creates a dancing elf with a face photo
+         */
+        function createElf(faceImagePath, index) {
+            const elf = document.createElement('div');
+            elf.className = 'elf';
+            elf.style.animationDelay = `${index * 0.5}s`;
+
+            // Random starting position
+            const startX = Math.random() * 100;
+            const startY = Math.random() * 100;
+            elf.style.left = `${startX}%`;
+            elf.style.top = `${startY}%`;
+
+            // Random animation duration for variety
+            const duration = 8 + Math.random() * 4; // 8-12 seconds
+            elf.style.animationDuration = `${duration}s`;
+
+            elf.innerHTML = `
+                <div class="elf__body">
+                    <div class="elf__hat"></div>
+                    <div class="elf__face">
+                        <img src="${faceImagePath}" alt="Festive elf" class="elf__photo" />
+                    </div>
+                    <div class="elf__body-main"></div>
+                    <div class="elf__legs">
+                        <div class="elf__leg elf__leg--left"></div>
+                        <div class="elf__leg elf__leg--right"></div>
+                    </div>
+                </div>
+            `;
+
+            return elf;
+        }
+
+        /**
+         * Initializes all dancing elves
+         */
+        function initElves() {
+            if (FACE_IMAGES.length === 0) {
+                console.log('No face images configured. Add filenames to FACE_IMAGES array in index.html');
+                return;
+            }
+
+            const container = document.getElementById('elvesContainer');
+
+            FACE_IMAGES.forEach((filename, index) => {
+                const imagePath = `./assets/images/faces/${filename}`;
+                const elf = createElf(imagePath, index);
+
+                // Check if image loads successfully
+                const img = elf.querySelector('.elf__photo');
+                img.addEventListener('error', () => {
+                    console.error(`Failed to load face image: ${filename}`);
+                    // Optionally remove the elf if image fails to load
+                    // elf.remove();
+                });
+
+                container.appendChild(elf);
+            });
+
+            console.log(`Created ${FACE_IMAGES.length} dancing elves!`);
+        }
+
+        // ==========================================
+        // Initialize on page load
+        // ==========================================
         window.addEventListener('load', () => {
             document.body.classList.add('loaded');
+            initElves();
         });
     </script>
 </body>
