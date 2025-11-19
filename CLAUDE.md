@@ -48,7 +48,10 @@ This is a **simple static HTML Christmas card** that can be sent to friends. It'
 
 ```
 xmas-card/
-├── assets/                 # Asset files
+├── .github/               # GitHub-specific files
+│   └── workflows/         # GitHub Actions workflows
+│       └── deploy.yml     # Auto-deploy to GitHub Pages
+├── assets/                # Asset files
 │   ├── images/            # Background images
 │   │   ├── background.jpg # Main background image (replace to customize)
 │   │   └── faces/         # Face photos for dancing elves
@@ -67,6 +70,7 @@ xmas-card/
 
 - **index.html** - Main HTML file containing the Christmas card structure
 - **styles.css** - All CSS styling and animations
+- **.github/workflows/deploy.yml** - GitHub Actions workflow for auto-deployment to GitHub Pages
 - **assets/images/background.jpg** - Background image (replace this file to change background)
 - **assets/images/faces/** - Folder for face photos that appear on dancing elves
 - **assets/audio/music.mp3** - Christmas music (replace this file to change music)
@@ -347,12 +351,21 @@ This is a static HTML site - all files can be deployed as-is.
 
 ### Deployment Options
 
-**GitHub Pages (Free):**
+**GitHub Pages (Free) - AUTOMATED:**
+This repository includes a GitHub Actions workflow (`.github/workflows/deploy.yml`) that automatically deploys to GitHub Pages on every push to `main`.
+
 ```bash
-# Enable GitHub Pages in repository settings
-# Set source to main branch, root directory
-# Your site will be at: https://username.github.io/xmas-card/
+# One-time setup:
+# 1. Go to repository Settings → Pages
+# 2. Under "Source", select "GitHub Actions"
+# 3. Push to main branch
+# 4. Your site will auto-deploy at: https://username.github.io/xmas-card/
 ```
+
+**Manual deployment trigger:**
+- Go to repository "Actions" tab
+- Select "Deploy to GitHub Pages" workflow
+- Click "Run workflow"
 
 **Netlify Drop (Free, No Account Needed):**
 1. Go to https://app.netlify.com/drop
@@ -533,6 +546,7 @@ Before committing, verify:
 - [x] Add basic HTML structure
 - [x] Set up CSS styling
 - [x] Create assets folders
+- [x] Set up GitHub Actions for auto-deployment
 
 ### ✅ Phase 2: Core Features (Complete)
 - [x] Add background image display
@@ -575,6 +589,13 @@ Before committing, verify:
 ---
 
 ## Changelog
+
+### Added GitHub Actions Deployment - 2025-11-19
+- Created GitHub Actions workflow for automatic deployment to GitHub Pages
+- Deploys on every push to main branch
+- Manual trigger option available from Actions tab
+- Zero configuration needed - just enable GitHub Actions in Pages settings
+- Updated documentation with deployment instructions
 
 ### Added Dancing Elves Feature - 2025-11-19
 - Added dancing Christmas elves that display face photos

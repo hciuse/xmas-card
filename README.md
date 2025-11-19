@@ -161,12 +161,23 @@ Open `styles.css` and modify the CSS variables at the top (lines 7-13):
 
 ## 🌐 Hosting & Deployment
 
-### GitHub Pages (Free)
+### GitHub Pages (Free) - AUTOMATED! ✨
 
+This repository includes a GitHub Actions workflow that **automatically deploys** to GitHub Pages!
+
+**Setup (One-time):**
 1. Push this repository to GitHub
-2. Go to repository Settings → Pages
-3. Select source: `main` branch, root directory
-4. Your site will be live at: `https://username.github.io/xmas-card/`
+2. Go to repository **Settings** → **Pages**
+3. Under "Source", select: **GitHub Actions**
+4. That's it! Your site will auto-deploy on every push to `main`
+
+**Your site will be live at:** `https://username.github.io/xmas-card/`
+
+**How it works:**
+- Every push to the `main` branch triggers automatic deployment
+- You can also manually trigger deployment from the "Actions" tab
+- No build process needed - deploys instantly!
+- The workflow file is at `.github/workflows/deploy.yml`
 
 ### Netlify (Free, Easiest)
 
