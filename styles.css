@@ -46,7 +46,8 @@ body.loaded {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("./assets/images/background.png");
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);  /* Fallback gradient */
+  background-image: url("./assets/images/background.png");  /* Your image on top */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -54,19 +55,8 @@ body.loaded {
   z-index: -1;
 }
 
-/* Fallback gradient if image doesn't load */
-.background-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  z-index: -2;
-}
+/* Removed the ::before gradient overlay that was blocking your image */
 
-/* Optional overlay for better text readability */
 .background-container::after {
   content: "";
   position: absolute;
