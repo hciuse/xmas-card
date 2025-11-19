@@ -1,151 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Merry Christmas! A festive holiday greeting card">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Merry Christmas! A festive holiday greeting card"
+    />
     <title>Merry Christmas! 🎄</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <!-- Background Image Container -->
-    <div class="background-container" role="img" aria-label="Festive Christmas background"></div>
+    <div
+      class="background-container"
+      role="img"
+      aria-label="Festive Christmas background"
+    ></div>
 
     <!-- Dancing Elves Container -->
     <div id="elvesContainer" class="elves-container" aria-hidden="true"></div>
 
     <!-- Main Card Content -->
     <main class="card-container">
-        <div class="card">
-            <!-- Greeting Header -->
-            <header class="card__header">
-                <h1 class="card__title">Merry Christmas!</h1>
-                <p class="card__subtitle">Wishing you joy and happiness</p>
-            </header>
+      <div class="card">
+        <!-- Greeting Header -->
+        <header class="card__header">
+          <h1 class="card__title">Merry Christmas!</h1>
+          <p class="card__subtitle">Wishing you joy and happiness</p>
+        </header>
 
-            <!-- Main Message -->
-            <section class="card__message">
-                <p>
-                    May your holidays be filled with warmth, laughter, and love.
-                    Wishing you and your loved ones a wonderful Christmas season
-                    and a happy, healthy New Year!
-                </p>
-                <p class="card__signature">
-                    With love and best wishes,<br>
-                    <strong>Your Name</strong>
-                </p>
-            </section>
+        <!-- Main Message -->
+        <section class="card__message">
+          <p>
+            May your holidays be filled with warmth, laughter, and love. Wishing
+            you and your loved ones a wonderful Christmas season and a happy,
+            healthy New Year!
+          </p>
+          <p class="card__signature">
+            With love and best wishes,<br />
+            <strong>Your Name</strong>
+          </p>
+        </section>
 
-            <!-- Decorative Elements -->
-            <div class="card__decoration" aria-hidden="true">
-                <span class="snowflake">❄</span>
-                <span class="snowflake">❅</span>
-                <span class="snowflake">❆</span>
-            </div>
+        <!-- Decorative Elements -->
+        <div class="card__decoration" aria-hidden="true">
+          <span class="snowflake">❄</span>
+          <span class="snowflake">❅</span>
+          <span class="snowflake">❆</span>
         </div>
+      </div>
 
-        <!-- Audio Controls -->
-        <div class="audio-controls">
-            <button id="audioToggle" class="audio-button" aria-label="Play Christmas music">
-                <span class="play-icon">🎵</span>
-                <span class="button-text">Play Music</span>
-            </button>
-            <audio id="christmasMusic" loop>
-                <source src="./assets/audio/music.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
+      <!-- Audio Controls -->
+      <div class="audio-controls">
+        <button
+          id="audioToggle"
+          class="audio-button"
+          aria-label="Play Christmas music"
+        >
+          <span class="play-icon">🎵</span>
+          <span class="button-text">Play Music</span>
+        </button>
+        <audio id="christmasMusic" loop>
+          <source src="./assets/audio/music.mp3" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+      </div>
     </main>
 
     <!-- Footer -->
     <footer class="footer">
-        <p class="footer__text">Made with ❤️ for the holidays</p>
+      <p class="footer__text">Made with ❤️ for the holidays</p>
     </footer>
 
     <!-- JavaScript for Audio Control and Dancing Elves -->
     <script>
-        // ==========================================
-        // CONFIGURATION: Add your face image filenames here!
-        // ==========================================
-        const FACE_IMAGES = [
-            // Add your face photo filenames here (they should be in assets/images/faces/)
-            // Example:
-            // 'mom.jpg',
-            // 'dad.png',
-            // 'sister.jpg',
-            // 'brother.png',
-            // 'grandma.jpg',
-            // 'friend.png',
-        ];
+      // ==========================================
+      // CONFIGURATION: Add your face image filenames here!
+      // ==========================================
+      const FACE_IMAGES = [
+        // Add your face photo filenames here (they should be in assets/images/faces/)
+        // Example:
+        // 'mom.jpg',
+        "test.png",
+        // 'sister.jpg',
+        // 'brother.png',
+        // 'grandma.jpg',
+        // 'friend.png',
+      ];
 
-        // ==========================================
-        // Audio Control
-        // ==========================================
-        const audio = document.getElementById('christmasMusic');
-        const toggleButton = document.getElementById('audioToggle');
-        const buttonText = toggleButton.querySelector('.button-text');
-        const playIcon = toggleButton.querySelector('.play-icon');
-        let isPlaying = false;
+      // ==========================================
+      // Audio Control
+      // ==========================================
+      const audio = document.getElementById("christmasMusic");
+      const toggleButton = document.getElementById("audioToggle");
+      const buttonText = toggleButton.querySelector(".button-text");
+      const playIcon = toggleButton.querySelector(".play-icon");
+      let isPlaying = false;
 
-        // Toggle audio play/pause
-        toggleButton.addEventListener('click', () => {
-            if (isPlaying) {
-                audio.pause();
-                buttonText.textContent = 'Play Music';
-                playIcon.textContent = '🎵';
-                toggleButton.setAttribute('aria-label', 'Play Christmas music');
-                isPlaying = false;
-            } else {
-                audio.play().catch(error => {
-                    console.log('Audio playback failed:', error);
-                    alert('Unable to play audio. Please check that the music file exists in assets/audio/music.mp3');
-                });
-                buttonText.textContent = 'Pause Music';
-                playIcon.textContent = '⏸️';
-                toggleButton.setAttribute('aria-label', 'Pause Christmas music');
-                isPlaying = true;
-            }
-        });
+      // Toggle audio play/pause
+      toggleButton.addEventListener("click", () => {
+        if (isPlaying) {
+          audio.pause();
+          buttonText.textContent = "Play Music";
+          playIcon.textContent = "🎵";
+          toggleButton.setAttribute("aria-label", "Play Christmas music");
+          isPlaying = false;
+        } else {
+          audio.play().catch((error) => {
+            console.log("Audio playback failed:", error);
+            alert(
+              "Unable to play audio. Please check that the music file exists in assets/audio/music.mp3"
+            );
+          });
+          buttonText.textContent = "Pause Music";
+          playIcon.textContent = "⏸️";
+          toggleButton.setAttribute("aria-label", "Pause Christmas music");
+          isPlaying = true;
+        }
+      });
 
-        // Handle audio end (shouldn't happen with loop, but just in case)
-        audio.addEventListener('ended', () => {
-            buttonText.textContent = 'Play Music';
-            playIcon.textContent = '🎵';
-            toggleButton.setAttribute('aria-label', 'Play Christmas music');
-            isPlaying = false;
-        });
+      // Handle audio end (shouldn't happen with loop, but just in case)
+      audio.addEventListener("ended", () => {
+        buttonText.textContent = "Play Music";
+        playIcon.textContent = "🎵";
+        toggleButton.setAttribute("aria-label", "Play Christmas music");
+        isPlaying = false;
+      });
 
-        // Handle errors
-        audio.addEventListener('error', (e) => {
-            console.error('Audio loading error:', e);
-            toggleButton.disabled = true;
-            buttonText.textContent = 'Music Unavailable';
-            toggleButton.classList.add('disabled');
-        });
+      // Handle errors
+      audio.addEventListener("error", (e) => {
+        console.error("Audio loading error:", e);
+        toggleButton.disabled = true;
+        buttonText.textContent = "Music Unavailable";
+        toggleButton.classList.add("disabled");
+      });
 
-        // ==========================================
-        // Dancing Elves
-        // ==========================================
+      // ==========================================
+      // Dancing Elves
+      // ==========================================
 
-        /**
-         * Creates a dancing elf with a face photo
-         */
-        function createElf(faceImagePath, index) {
-            const elf = document.createElement('div');
-            elf.className = 'elf';
-            elf.style.animationDelay = `${index * 0.5}s`;
+      /**
+       * Creates a dancing elf with a face photo
+       */
+      function createElf(faceImagePath, index) {
+        const elf = document.createElement("div");
+        elf.className = "elf";
+        elf.style.animationDelay = `${index * 0.5}s`;
 
-            // Random starting position
-            const startX = Math.random() * 100;
-            const startY = Math.random() * 100;
-            elf.style.left = `${startX}%`;
-            elf.style.top = `${startY}%`;
+        // Random starting position
+        const startX = Math.random() * 100;
+        const startY = Math.random() * 100;
+        elf.style.left = `${startX}%`;
+        elf.style.top = `${startY}%`;
 
-            // Random animation duration for variety
-            const duration = 8 + Math.random() * 4; // 8-12 seconds
-            elf.style.animationDuration = `${duration}s`;
+        // Random animation duration for variety
+        const duration = 8 + Math.random() * 4; // 8-12 seconds
+        elf.style.animationDuration = `${duration}s`;
 
-            elf.innerHTML = `
+        elf.innerHTML = `
                 <div class="elf__body">
                     <div class="elf__hat"></div>
                     <div class="elf__face">
@@ -159,45 +172,47 @@
                 </div>
             `;
 
-            return elf;
+        return elf;
+      }
+
+      /**
+       * Initializes all dancing elves
+       */
+      function initElves() {
+        if (FACE_IMAGES.length === 0) {
+          console.log(
+            "No face images configured. Add filenames to FACE_IMAGES array in index.html"
+          );
+          return;
         }
 
-        /**
-         * Initializes all dancing elves
-         */
-        function initElves() {
-            if (FACE_IMAGES.length === 0) {
-                console.log('No face images configured. Add filenames to FACE_IMAGES array in index.html');
-                return;
-            }
+        const container = document.getElementById("elvesContainer");
 
-            const container = document.getElementById('elvesContainer');
+        FACE_IMAGES.forEach((filename, index) => {
+          const imagePath = `./assets/images/faces/${filename}`;
+          const elf = createElf(imagePath, index);
 
-            FACE_IMAGES.forEach((filename, index) => {
-                const imagePath = `./assets/images/faces/${filename}`;
-                const elf = createElf(imagePath, index);
+          // Check if image loads successfully
+          const img = elf.querySelector(".elf__photo");
+          img.addEventListener("error", () => {
+            console.error(`Failed to load face image: ${filename}`);
+            // Optionally remove the elf if image fails to load
+            // elf.remove();
+          });
 
-                // Check if image loads successfully
-                const img = elf.querySelector('.elf__photo');
-                img.addEventListener('error', () => {
-                    console.error(`Failed to load face image: ${filename}`);
-                    // Optionally remove the elf if image fails to load
-                    // elf.remove();
-                });
-
-                container.appendChild(elf);
-            });
-
-            console.log(`Created ${FACE_IMAGES.length} dancing elves!`);
-        }
-
-        // ==========================================
-        // Initialize on page load
-        // ==========================================
-        window.addEventListener('load', () => {
-            document.body.classList.add('loaded');
-            initElves();
+          container.appendChild(elf);
         });
+
+        console.log(`Created ${FACE_IMAGES.length} dancing elves!`);
+      }
+
+      // ==========================================
+      // Initialize on page load
+      // ==========================================
+      window.addEventListener("load", () => {
+        document.body.classList.add("loaded");
+        initElves();
+      });
     </script>
-</body>
+  </body>
 </html>
