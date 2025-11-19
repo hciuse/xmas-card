@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Merry Christmas! A festive holiday greeting card">
+    <title>Merry Christmas! 🎄</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background Image Container -->
+    <div class="background-container" role="img" aria-label="Festive Christmas background"></div>
+
+    <!-- Main Card Content -->
+    <main class="card-container">
+        <div class="card">
+            <!-- Greeting Header -->
+            <header class="card__header">
+                <h1 class="card__title">Merry Christmas!</h1>
+                <p class="card__subtitle">Wishing you joy and happiness</p>
+            </header>
+
+            <!-- Main Message -->
+            <section class="card__message">
+                <p>
+                    May your holidays be filled with warmth, laughter, and love.
+                    Wishing you and your loved ones a wonderful Christmas season
+                    and a happy, healthy New Year!
+                </p>
+                <p class="card__signature">
+                    With love and best wishes,<br>
+                    <strong>Your Name</strong>
+                </p>
+            </section>
+
+            <!-- Decorative Elements -->
+            <div class="card__decoration" aria-hidden="true">
+                <span class="snowflake">❄</span>
+                <span class="snowflake">❅</span>
+                <span class="snowflake">❆</span>
+            </div>
+        </div>
+
+        <!-- Audio Controls -->
+        <div class="audio-controls">
+            <button id="audioToggle" class="audio-button" aria-label="Play Christmas music">
+                <span class="play-icon">🎵</span>
+                <span class="button-text">Play Music</span>
+            </button>
+            <audio id="christmasMusic" loop>
+                <source src="./assets/audio/music.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer__text">Made with ❤️ for the holidays</p>
+    </footer>
+
+    <!-- JavaScript for Audio Control -->
+    <script>
+        const audio = document.getElementById('christmasMusic');
+        const toggleButton = document.getElementById('audioToggle');
+        const buttonText = toggleButton.querySelector('.button-text');
+        const playIcon = toggleButton.querySelector('.play-icon');
+        let isPlaying = false;
+
+        // Toggle audio play/pause
+        toggleButton.addEventListener('click', () => {
+            if (isPlaying) {
+                audio.pause();
+                buttonText.textContent = 'Play Music';
+                playIcon.textContent = '🎵';
+                toggleButton.setAttribute('aria-label', 'Play Christmas music');
+                isPlaying = false;
+            } else {
+                audio.play().catch(error => {
+                    console.log('Audio playback failed:', error);
+                    alert('Unable to play audio. Please check that the music file exists in assets/audio/music.mp3');
+                });
+                buttonText.textContent = 'Pause Music';
+                playIcon.textContent = '⏸️';
+                toggleButton.setAttribute('aria-label', 'Pause Christmas music');
+                isPlaying = true;
+            }
+        });
+
+        // Handle audio end (shouldn't happen with loop, but just in case)
+        audio.addEventListener('ended', () => {
+            buttonText.textContent = 'Play Music';
+            playIcon.textContent = '🎵';
+            toggleButton.setAttribute('aria-label', 'Play Christmas music');
+            isPlaying = false;
+        });
+
+        // Handle errors
+        audio.addEventListener('error', (e) => {
+            console.error('Audio loading error:', e);
+            toggleButton.disabled = true;
+            buttonText.textContent = 'Music Unavailable';
+            toggleButton.classList.add('disabled');
+        });
+
+        // Add fade-in animation on load
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+        });
+    </script>
+</body>
+</html>

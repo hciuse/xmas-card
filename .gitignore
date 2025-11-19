@@ -1,0 +1,150 @@
+# ===================================
+# Christmas Card - Git Ignore File
+# ===================================
+
+# Large Media Files (images and audio)
+# Uncomment these if you want to keep media files local only
+# and not push them to the repository
+
+# Background images
+# assets/images/*.jpg
+# assets/images/*.jpeg
+# assets/images/*.png
+# assets/images/*.gif
+# assets/images/*.webp
+
+# Audio files
+# assets/audio/*.mp3
+# assets/audio/*.ogg
+# assets/audio/*.wav
+# assets/audio/*.m4a
+
+# Keep README files in assets folders
+!assets/images/README.md
+!assets/audio/README.md
+
+# ===================================
+# Operating System Files
+# ===================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ===================================
+# Editor and IDE Files
+# ===================================
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# JetBrains IDEs (WebStorm, PhpStorm, etc.)
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+*.swp
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+
+# ===================================
+# Backup and Temporary Files
+# ===================================
+
+*.bak
+*.backup
+*.tmp
+*.temp
+*.log
+*.cache
+
+# Compressed archives (if you create zips for sharing)
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# ===================================
+# Development and Testing
+# ===================================
+
+# If you add Node.js tools later
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# If you add build tools later
+dist/
+build/
+
+# ===================================
+# Personal Files
+# ===================================
+
+# Add any personal files you don't want to commit
+# personal/
+# drafts/
+# private/
+
+# ===================================
+# Notes
+# ===================================
+
+# To ignore large media files and keep repository small,
+# uncomment the media file patterns at the top of this file.
+#
+# Users can then add their own images and audio locally
+# without pushing them to the repository.
