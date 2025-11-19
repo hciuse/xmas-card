@@ -148,9 +148,9 @@
         elf.className = "elf";
         elf.style.animationDelay = `${index * 0.5}s`;
 
-        // Random starting position
-        const startX = Math.random() * 100;
-        const startY = Math.random() * 100;
+        // Random starting position (keep away from edges)
+        const startX = 10 + Math.random() * 70; // 10-80% to stay on screen
+        const startY = 10 + Math.random() * 70; // 10-80% to stay on screen
         elf.style.left = `${startX}%`;
         elf.style.top = `${startY}%`;
 
