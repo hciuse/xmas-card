@@ -3,20 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Merry Christmas! A festive holiday greeting card"
-    />
+    <meta name="description" content="Merry Christmas! A festive holiday greeting card" />
     <title>Merry Christmas! 🎄</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <!-- Background Image Container -->
-    <div
-      class="background-container"
-      role="img"
-      aria-label="Festive Christmas background"
-    ></div>
+    <div class="background-container" role="img" aria-label="Festive Christmas background"></div>
 
     <!-- Dancing Elves Container -->
     <div id="elvesContainer" class="elves-container" aria-hidden="true"></div>
@@ -36,9 +29,8 @@
         <!-- Main Message -->
         <section class="card__message">
           <p>
-            May your holidays be filled with warmth, laughter, and love. Wishing
-            you and your loved ones a wonderful Christmas season and a happy,
-            healthy New Year!
+            May your holidays be filled with warmth, laughter, and love. Wishing you and your loved ones a wonderful Christmas season and a
+            happy, healthy New Year!
           </p>
           <p class="card__signature">
             With love and best wishes,<br />
@@ -56,11 +48,7 @@
 
       <!-- Audio Controls -->
       <div class="audio-controls">
-        <button
-          id="audioToggle"
-          class="audio-button"
-          aria-label="Play Christmas music"
-        >
+        <button id="audioToggle" class="audio-button" aria-label="Play Christmas music">
           <span class="play-icon">🎵</span>
           <span class="button-text">Play Music</span>
         </button>
@@ -81,16 +69,7 @@
       // ==========================================
       // CONFIGURATION: Add your face image filenames here!
       // ==========================================
-      const FACE_IMAGES = [
-        // Add your face photo filenames here (they should be in assets/images/faces/)
-        // Example:
-        // 'mom.jpg',
-        "test.png",
-        // 'sister.jpg',
-        // 'brother.png',
-        // 'grandma.jpg',
-        // 'friend.png',
-      ];
+      const FACE_IMAGES = ["andré.png", "leonard.jpg", "lilian.jpg", "lukas.jpeg", "maged.jpg", "marthe.jpg", "marvin.png", "toni.jpg"];
 
       // ==========================================
       // Audio Control
@@ -112,9 +91,7 @@
         } else {
           audio.play().catch((error) => {
             console.log("Audio playback failed:", error);
-            alert(
-              "Unable to play audio. Please check that the music file exists in assets/audio/music.mp3"
-            );
+            alert("Unable to play audio. Please check that the music file exists in assets/audio/music.mp3");
           });
           buttonText.textContent = "Pause Music";
           playIcon.textContent = "⏸️";
@@ -183,9 +160,7 @@
        */
       function initElves() {
         if (FACE_IMAGES.length === 0) {
-          console.log(
-            "No face images configured. Add filenames to FACE_IMAGES array in index.html"
-          );
+          console.log("No face images configured. Add filenames to FACE_IMAGES array in index.html");
           return;
         }
 
