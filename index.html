@@ -35,16 +35,21 @@
         <!-- Greeting Header -->
         <header class="card__header">
           <h1 class="card__title">Frohe Weihnachten!</h1>
-          <p class="card__subtitle">Erholsame Feiertage und ein glückliches neues Jahr.</p>
+          <p class="card__subtitle">
+            Erholsame Feiertage und ein glückliches neues Jahr.
+          </p>
         </header>
 
         <!-- Main Message -->
         <section class="card__message">
           <p>
-            Möge Ihre Weihnachtszeit voller Wärme, Lachen und Liebe sein. Wir wünsche Ihnen und Ihren Lieben eine wundervolle Weihnachtszeit und ein glückliches, gesundes neues Jahr!
+            Möge Ihre Weihnachtszeit voller Wärme, Lachen und Liebe sein. Wir
+            wünsche Ihnen und Ihren Lieben eine wundervolle Weihnachtszeit und
+            ein glückliches, gesundes neues Jahr!
           </p>
           <p class="card__signature">
-            <span class="card__closing">Mit Liebe und besten Wünschen,</span><br />
+            <span class="card__closing">Mit Liebe und besten Wünschen,</span
+            ><br />
             <strong>Ihr HCIUSE-Team</strong>
           </p>
         </section>
@@ -250,7 +255,7 @@
           if (isMouseMoving) {
             createSnowParticle(lastMouseX, lastMouseY);
           }
-        }, 50); // Create particle every 50ms
+        }, 30); // Create particle every 50ms
       }
 
       function stopSnowFountain() {
@@ -266,7 +271,7 @@
 
         // Random fountain angle (upward cone)
         const angle = (Math.random() * 60 - 30) * (Math.PI / 180); // -30 to +30 degrees
-        const velocity = 100 + Math.random() * 100; // pixels per second
+        const velocity = -400 + Math.random() * 400; // pixels per second
 
         // Calculate velocity components
         const vx = Math.sin(angle) * velocity;
@@ -275,7 +280,7 @@
         // Random particle characteristics
         const size = 4 + Math.random() * 6; // 4-10px
         const rotation = Math.random() * 360;
-        const duration = 1 + Math.random() * 0.5; // 1-1.5 seconds
+        const duration = 3 + Math.random() * 0.5; // 1-1.5 seconds
 
         // Style the particle
         particle.style.left = `${x}px`;
@@ -293,7 +298,7 @@
         // Remove after animation completes
         setTimeout(() => {
           particle.remove();
-        }, duration * 1000);
+        }, duration * 1100);
       }
 
       // ==========================================
