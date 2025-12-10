@@ -157,6 +157,7 @@ Create personalized card links where each recipient gets a unique message - and 
    - Card Title (e.g., "Happy Holidays Sarah!")
    - Subtitle (e.g., "Wishing you an amazing 2024")
    - Main Message (your personal message)
+   - Closing Text (e.g., "Love,", "Warmest regards,")
    - Signature (your name)
 3. Click "🎁 Generate URL"
 4. Copy the generated link and share it!
@@ -174,9 +175,10 @@ index.html?msg=eyJ0aXRsZSI6IkhhcHB5IEhvbGlkYXlzISIsInN1YnRpdGxlIjoiVGVzdGluZyB0a
 - ✅ Easy to use with the included URL generator tool
 
 **Tips:**
-- You can customize all fields (title, subtitle, message, signature)
+- You can customize all fields (title, subtitle, message, closing text, signature)
 - Leave any field blank to use the default text from `index.html`
 - The URL generator includes a preview button to test your card
+- Try different closing texts: "Love,", "Warmest wishes,", "Cheers,", "Best regards,"
 - Works great with GitHub Pages or any hosted version
 
 ### 5. Customize Colors and Styling

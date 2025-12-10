@@ -33,7 +33,7 @@
             happy, healthy New Year!
           </p>
           <p class="card__signature">
-            With love and best wishes,<br />
+            <span class="card__closing">With love and best wishes,</span><br />
             <strong>Your Name</strong>
           </p>
         </section>
@@ -304,6 +304,12 @@
           if (customText.message) {
             const messageElement = document.querySelector(".card__message p:first-child");
             if (messageElement) messageElement.textContent = customText.message;
+          }
+
+          // Update closing text if provided (e.g., "With love and best wishes,")
+          if (customText.closing) {
+            const closingElement = document.querySelector(".card__closing");
+            if (closingElement) closingElement.textContent = customText.closing;
           }
 
           // Update signature if provided

@@ -227,6 +227,7 @@
       <div class="info-box">
         <p><strong>ℹ️ How it works:</strong></p>
         <p>Fill in the fields below to customize your Christmas card. The text will be encoded (base64) so the recipient can't preview it in the URL.</p>
+        <p>You can customize the title, subtitle, main message, closing text (e.g., "Love," or "Warmest regards,"), and signature!</p>
         <p>Share the generated link, and they'll see your personalized message when they open it!</p>
       </div>
 
@@ -250,6 +251,12 @@
             placeholder="Your personalized holiday message..."
           >May your holidays be filled with warmth, laughter, and love. Wishing you and your loved ones a wonderful Christmas season and a happy, healthy New Year!</textarea>
           <div class="hint">The main body of your card</div>
+        </div>
+
+        <div class="form-group">
+          <label for="closing">Closing Text</label>
+          <input type="text" id="closing" placeholder="e.g., With love and best wishes," value="With love and best wishes," />
+          <div class="hint">Text before your signature (e.g., "Love,", "Warmest regards,")</div>
         </div>
 
         <div class="form-group">
@@ -288,6 +295,7 @@
         const title = document.getElementById("title").value.trim();
         const subtitle = document.getElementById("subtitle").value.trim();
         const message = document.getElementById("message").value.trim();
+        const closing = document.getElementById("closing").value.trim();
         const signature = document.getElementById("signature").value.trim();
 
         // Create object with only non-empty fields
@@ -295,6 +303,7 @@
         if (title) customText.title = title;
         if (subtitle) customText.subtitle = subtitle;
         if (message) customText.message = message;
+        if (closing) customText.closing = closing;
         if (signature) customText.signature = signature;
 
         // Convert to JSON and encode to base64
@@ -348,6 +357,7 @@
         document.getElementById("subtitle").value = "Wishing you joy and happiness";
         document.getElementById("message").value =
           "May your holidays be filled with warmth, laughter, and love. Wishing you and your loved ones a wonderful Christmas season and a happy, healthy New Year!";
+        document.getElementById("closing").value = "With love and best wishes,";
         document.getElementById("signature").value = "Your Name";
       }
     </script>
