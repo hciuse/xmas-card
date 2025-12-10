@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Christmas Card URL Generator</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .container {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        max-width: 800px;
+        width: 100%;
+        padding: 40px;
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 10px;
+        font-size: 28px;
+      }
+
+      .subtitle {
+        color: #666;
+        margin-bottom: 30px;
+        font-size: 14px;
+      }
+
+      .form-group {
+        margin-bottom: 25px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        color: #333;
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 14px;
+        font-family: inherit;
+        transition: border-color 0.3s;
+      }
+
+      input:focus,
+      textarea:focus {
+        outline: none;
+        border-color: #667eea;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+
+      .hint {
+        font-size: 12px;
+        color: #999;
+        margin-top: 5px;
+        font-style: italic;
+      }
+
+      .button-group {
+        display: flex;
+        gap: 10px;
+        margin-top: 30px;
+      }
+
+      button {
+        flex: 1;
+        padding: 14px 24px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .btn-generate {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+      }
+
+      .btn-generate:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+      }
+
+      .btn-reset {
+        background: #f0f0f0;
+        color: #333;
+      }
+
+      .btn-reset:hover {
+        background: #e0e0e0;
+      }
+
+      .result-section {
+        margin-top: 30px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        display: none;
+      }
+
+      .result-section.show {
+        display: block;
+      }
+
+      .result-label {
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      .url-box {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        word-break: break-all;
+        font-family: "Courier New", monospace;
+        font-size: 13px;
+        border: 2px solid #e0e0e0;
+        max-height: 150px;
+        overflow-y: auto;
+      }
+
+      .copy-button {
+        margin-top: 10px;
+        width: 100%;
+        background: #4caf50;
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background 0.3s;
+      }
+
+      .copy-button:hover {
+        background: #45a049;
+      }
+
+      .copy-button.copied {
+        background: #2196f3;
+      }
+
+      .preview-button {
+        margin-top: 10px;
+        width: 100%;
+        background: #ff9800;
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+        transition: background 0.3s;
+      }
+
+      .preview-button:hover {
+        background: #f57c00;
+      }
+
+      .info-box {
+        background: #e3f2fd;
+        border-left: 4px solid #2196f3;
+        padding: 15px;
+        margin-bottom: 30px;
+        border-radius: 4px;
+      }
+
+      .info-box p {
+        margin: 5px 0;
+        color: #1565c0;
+        font-size: 14px;
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          padding: 20px;
+        }
+
+        h1 {
+          font-size: 24px;
+        }
+
+        .button-group {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🎄 Christmas Card URL Generator</h1>
+      <p class="subtitle">Create a personalized Christmas card link with encoded text</p>
+
+      <div class="info-box">
+        <p><strong>ℹ️ How it works:</strong></p>
+        <p>Fill in the fields below to customize your Christmas card. The text will be encoded (base64) so the recipient can't preview it in the URL.</p>
+        <p>You can customize the title, subtitle, main message, closing text (e.g., "Love," or "Warmest regards,"), and signature!</p>
+        <p>Share the generated link, and they'll see your personalized message when they open it!</p>
+      </div>
+
+      <form id="cardForm">
+        <div class="form-group">
+          <label for="title">Card Title</label>
+          <input type="text" id="title" placeholder="e.g., Merry Christmas!" value="Frohe Weihnachten!" />
+          <div class="hint">Main greeting text (leave blank to use default)</div>
+        </div>
+
+        <div class="form-group">
+          <label for="subtitle">Subtitle</label>
+          <input type="text" id="subtitle" placeholder="e.g., Wishing you joy and happiness" value="Erholsame Feiertage und ein glückliches neues Jahr." />
+          <div class="hint">Subtitle text below the title</div>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Main Message</label>
+          <textarea
+            id="message"
+            placeholder="Your personalized holiday message..."
+          >Möge Ihre Weihnachtszeit voller Wärme, Lachen und Liebe sein. Wir wünsche Ihnen und Ihren Lieben eine wundervolle Weihnachtszeit und ein glückliches, gesundes neues Jahr!</textarea>
+          <div class="hint">The main body of your card</div>
+        </div>
+
+        <div class="form-group">
+          <label for="closing">Closing Text</label>
+          <input type="text" id="closing" placeholder="e.g., With love and best wishes," value="Mit Liebe und besten Wünschen," />
+          <div class="hint">Text before your signature (e.g., "Love,", "Warmest regards,")</div>
+        </div>
+
+        <div class="form-group">
+          <label for="signature">Signature (Your Name)</label>
+          <input type="text" id="signature" placeholder="e.g., John & Mary" value="Ihr HCIUSE-Team" />
+          <div class="hint">Who is the card from?</div>
+        </div>
+
+        <div class="button-group">
+          <button type="submit" class="btn-generate">🎁 Generate URL</button>
+          <button type="button" class="btn-reset" onclick="resetForm()">🔄 Reset</button>
+        </div>
+      </form>
+
+      <div id="resultSection" class="result-section">
+        <div class="result-label">✅ Your personalized card URL:</div>
+        <div class="url-box" id="generatedURL"></div>
+        <button class="copy-button" onclick="copyURL()">📋 Copy to Clipboard</button>
+        <a href="#" target="_blank" id="previewLink" class="preview-button">👁️ Preview Card</a>
+      </div>
+    </div>
+
+    <script>
+      const form = document.getElementById("cardForm");
+      const resultSection = document.getElementById("resultSection");
+      const generatedURLDiv = document.getElementById("generatedURL");
+      const previewLink = document.getElementById("previewLink");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        generateURL();
+      });
+
+      function generateURL() {
+        // Get form values
+        const title = document.getElementById("title").value.trim();
+        const subtitle = document.getElementById("subtitle").value.trim();
+        const message = document.getElementById("message").value.trim();
+        const closing = document.getElementById("closing").value.trim();
+        const signature = document.getElementById("signature").value.trim();
+
+        // Create object with only non-empty fields
+        const customText = {};
+        if (title) customText.title = title;
+        if (subtitle) customText.subtitle = subtitle;
+        if (message) customText.message = message;
+        if (closing) customText.closing = closing;
+        if (signature) customText.signature = signature;
+
+        // Convert to JSON and encode to base64
+        const jsonString = JSON.stringify(customText);
+        const encodedMsg = btoa(jsonString);
+
+        // Get the base URL (current page's directory)
+        const baseURL = window.location.href.replace("url-generator.html", "index.html");
+
+        // Generate full URL with parameter
+        const fullURL = `${baseURL}?msg=${encodedMsg}`;
+
+        // Display result
+        generatedURLDiv.textContent = fullURL;
+        previewLink.href = fullURL;
+        resultSection.classList.add("show");
+
+        // Scroll to result
+        resultSection.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+
+      function copyURL() {
+        const url = generatedURLDiv.textContent;
+        const copyButton = document.querySelector(".copy-button");
+
+        navigator.clipboard
+          .writeText(url)
+          .then(() => {
+            // Show success feedback
+            copyButton.textContent = "✅ Copied!";
+            copyButton.classList.add("copied");
+
+            // Reset button after 2 seconds
+            setTimeout(() => {
+              copyButton.textContent = "📋 Copy to Clipboard";
+              copyButton.classList.remove("copied");
+            }, 2000);
+          })
+          .catch((err) => {
+            console.error("Failed to copy:", err);
+            alert("Failed to copy. Please select and copy the URL manually.");
+          });
+      }
+
+      function resetForm() {
+        document.getElementById("cardForm").reset();
+        resultSection.classList.remove("show");
+
+        // Reset to German default values
+        document.getElementById("title").value = "Frohe Weihnachten!";
+        document.getElementById("subtitle").value = "Erholsame Feiertage und ein glückliches neues Jahr.";
+        document.getElementById("message").value = "Möge Ihre Weihnachtszeit voller Wärme, Lachen und Liebe sein. Wir wünsche Ihnen und Ihren Lieben eine wundervolle Weihnachtszeit und ein glückliches, gesundes neues Jahr!";
+        document.getElementById("closing").value = "Mit Liebe und besten Wünschen,";
+        document.getElementById("signature").value = "Ihr HCIUSE-Team";
+      }
+    </script>
+  </body>
+</html>

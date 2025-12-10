@@ -3,13 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Merry Christmas! A festive holiday greeting card" />
+    <meta
+      name="description"
+      content="Merry Christmas! A festive holiday greeting card"
+    />
     <title>Merry Christmas! 🎄</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <!-- Background Image Container -->
-    <div class="background-container" role="img" aria-label="Festive Christmas background"></div>
+    <div
+      class="background-container"
+      role="img"
+      aria-label="Festive Christmas background"
+    ></div>
+
+    <!-- Logo in Top Left Corner -->
+    <div class="logo-container">
+      <img src="./assets/logo/hciuse.png" alt="Logo" class="site-logo" />
+    </div>
 
     <!-- Dancing Elves Container -->
     <div id="elvesContainer" class="elves-container" aria-hidden="true"></div>
@@ -22,19 +34,18 @@
       <div class="card">
         <!-- Greeting Header -->
         <header class="card__header">
-          <h1 class="card__title">Merry Christmas!</h1>
-          <p class="card__subtitle">Wishing you joy and happiness</p>
+          <h1 class="card__title">Frohe Weihnachten!</h1>
+          <p class="card__subtitle">Erholsame Feiertage und ein glückliches neues Jahr.</p>
         </header>
 
         <!-- Main Message -->
         <section class="card__message">
           <p>
-            May your holidays be filled with warmth, laughter, and love. Wishing you and your loved ones a wonderful Christmas season and a
-            happy, healthy New Year!
+            Möge Ihre Weihnachtszeit voller Wärme, Lachen und Liebe sein. Wir wünsche Ihnen und Ihren Lieben eine wundervolle Weihnachtszeit und ein glückliches, gesundes neues Jahr!
           </p>
           <p class="card__signature">
-            With love and best wishes,<br />
-            <strong>Your Name</strong>
+            <span class="card__closing">Mit Liebe und besten Wünschen,</span><br />
+            <strong>Ihr HCIUSE-Team</strong>
           </p>
         </section>
 
@@ -48,7 +59,11 @@
 
       <!-- Audio Controls -->
       <div class="audio-controls">
-        <button id="audioToggle" class="audio-button" aria-label="Play Christmas music">
+        <button
+          id="audioToggle"
+          class="audio-button"
+          aria-label="Play Christmas music"
+        >
           <span class="play-icon">🎵</span>
           <span class="button-text">Play Music</span>
         </button>
@@ -69,7 +84,16 @@
       // ==========================================
       // CONFIGURATION: Add your face image filenames here!
       // ==========================================
-      const FACE_IMAGES = ["andré.png", "leonard.jpg", "lilian.jpg", "lukas.jpeg", "maged.jpg", "marthe.jpg", "marvin.png", "toni.jpg"];
+      const FACE_IMAGES = [
+        "andré.png",
+        "leonard2.png",
+        "lilian2.png",
+        "lukas2.png",
+        "maged2.png",
+        "marthe2.png",
+        "marvin2.png",
+        "toni2.png",
+      ];
 
       // ==========================================
       // Audio Control
@@ -91,7 +115,9 @@
         } else {
           audio.play().catch((error) => {
             console.log("Audio playback failed:", error);
-            alert("Unable to play audio. Please check that the music file exists in assets/audio/music.mp3");
+            alert(
+              "Unable to play audio. Please check that the music file exists in assets/audio/music.mp3"
+            );
           });
           buttonText.textContent = "Pause Music";
           playIcon.textContent = "⏸️";
@@ -160,7 +186,9 @@
        */
       function initElves() {
         if (FACE_IMAGES.length === 0) {
-          console.log("No face images configured. Add filenames to FACE_IMAGES array in index.html");
+          console.log(
+            "No face images configured. Add filenames to FACE_IMAGES array in index.html"
+          );
           return;
         }
 
@@ -269,10 +297,74 @@
       }
 
       // ==========================================
+      // URL Parameter Handling (Base64 Encoded)
+      // ==========================================
+
+      /**
+       * Decodes base64 encoded URL parameter and updates card text
+       */
+      function loadCustomTextFromURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const encodedMsg = urlParams.get("msg");
+
+        if (!encodedMsg) {
+          return; // No custom message, use defaults
+        }
+
+        try {
+          // Decode base64
+          const decodedJSON = atob(encodedMsg);
+          const customText = JSON.parse(decodedJSON);
+
+          // Update title if provided
+          if (customText.title) {
+            const titleElement = document.querySelector(".card__title");
+            if (titleElement) titleElement.textContent = customText.title;
+          }
+
+          // Update subtitle if provided
+          if (customText.subtitle) {
+            const subtitleElement = document.querySelector(".card__subtitle");
+            if (subtitleElement)
+              subtitleElement.textContent = customText.subtitle;
+          }
+
+          // Update main message if provided
+          if (customText.message) {
+            const messageElement = document.querySelector(
+              ".card__message p:first-child"
+            );
+            if (messageElement) messageElement.textContent = customText.message;
+          }
+
+          // Update closing text if provided (e.g., "With love and best wishes,")
+          if (customText.closing) {
+            const closingElement = document.querySelector(".card__closing");
+            if (closingElement) closingElement.textContent = customText.closing;
+          }
+
+          // Update signature if provided
+          if (customText.signature) {
+            const signatureElement = document.querySelector(
+              ".card__signature strong"
+            );
+            if (signatureElement)
+              signatureElement.textContent = customText.signature;
+          }
+
+          console.log("Custom text loaded from URL parameters");
+        } catch (error) {
+          console.error("Failed to decode URL parameters:", error);
+          console.log("Using default text");
+        }
+      }
+
+      // ==========================================
       // Initialize on page load
       // ==========================================
       window.addEventListener("load", () => {
         document.body.classList.add("loaded");
+        loadCustomTextFromURL();
         initElves();
       });
     </script>

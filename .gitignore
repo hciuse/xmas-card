@@ -22,6 +22,7 @@
 # Keep README files in assets folders
 !assets/images/README.md
 !assets/audio/README.md
+!assets/logo/README.md
 
 # ===================================
 # Operating System Files
