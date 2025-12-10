@@ -73,6 +73,50 @@ body.loaded {
 }
 
 /* ===================================
+   Logo in Top Left Corner
+   =================================== */
+
+.logo-container {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.site-logo {
+  display: block;
+  max-width: 120px;
+  max-height: 80px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Mobile responsiveness for logo */
+@media (max-width: 768px) {
+  .logo-container {
+    top: 10px;
+    left: 10px;
+    padding: 8px;
+  }
+
+  .site-logo {
+    max-width: 80px;
+    max-height: 50px;
+  }
+}
+
+/* ===================================
    Card Container
    =================================== */
 

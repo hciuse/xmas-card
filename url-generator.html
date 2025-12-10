@@ -222,48 +222,25 @@
   <body>
     <div class="container">
       <h1>🎄 Christmas Card URL Generator</h1>
-      <p class="subtitle">
-        Create a personalized Christmas card link with encoded text
-      </p>
+      <p class="subtitle">Create a personalized Christmas card link with encoded text</p>
 
       <div class="info-box">
         <p><strong>ℹ️ How it works:</strong></p>
-        <p>
-          Fill in the fields below to customize your Christmas card. The text
-          will be encoded (base64) so the recipient can't preview it in the URL.
-        </p>
-        <p>
-          You can customize the title, subtitle, main message, closing text
-          (e.g., "Love," or "Warmest regards,"), and signature!
-        </p>
-        <p>
-          Share the generated link, and they'll see your personalized message
-          when they open it!
-        </p>
+        <p>Fill in the fields below to customize your Christmas card. The text will be encoded (base64) so the recipient can't preview it in the URL.</p>
+        <p>You can customize the title, subtitle, main message, closing text (e.g., "Love," or "Warmest regards,"), and signature!</p>
+        <p>Share the generated link, and they'll see your personalized message when they open it!</p>
       </div>
 
       <form id="cardForm">
         <div class="form-group">
           <label for="title">Card Title</label>
-          <input
-            type="text"
-            id="title"
-            placeholder="e.g., Merry Christmas!"
-            value="Frohe Weihnachten!"
-          />
-          <div class="hint">
-            Main greeting text (leave blank to use default)
-          </div>
+          <input type="text" id="title" placeholder="e.g., Merry Christmas!" value="" />
+          <div class="hint">Main greeting text (leave blank to use default)</div>
         </div>
 
         <div class="form-group">
           <label for="subtitle">Subtitle</label>
-          <input
-            type="text"
-            id="subtitle"
-            placeholder="e.g., Wishing you joy and happiness"
-            value="Erholsame Feiertage und ein glückliches neues Jahr."
-          />
+          <input type="text" id="subtitle" placeholder="e.g., Wishing you joy and happiness" value="" />
           <div class="hint">Subtitle text below the title</div>
         </div>
 
@@ -272,53 +249,33 @@
           <textarea
             id="message"
             placeholder="Your personalized holiday message..."
-          >
-Möge Ihre Weihnachtszeit voller Wärme, Lachen und Liebe sein. Wir wünsche Ihnen und Ihren Lieben eine wundervolle Weihnachtszeit und ein glückliches, gesundes neues Jahr!</textarea
-          >
+          ></textarea>
           <div class="hint">The main body of your card</div>
         </div>
 
         <div class="form-group">
           <label for="closing">Closing Text</label>
-          <input
-            type="text"
-            id="closing"
-            placeholder="e.g., With love and best wishes,"
-            value="Mit Liebe und besten Wünschen,"
-          />
-          <div class="hint">
-            Text before your signature (e.g., "Love,", "Warmest regards,")
-          </div>
+          <input type="text" id="closing" placeholder="e.g., With love and best wishes," value="" />
+          <div class="hint">Text before your signature (e.g., "Love,", "Warmest regards,")</div>
         </div>
 
         <div class="form-group">
           <label for="signature">Signature (Your Name)</label>
-          <input
-            type="text"
-            id="signature"
-            placeholder="e.g., John & Mary"
-            value="Ihr HCIUSE-Team"
-          />
+          <input type="text" id="signature" placeholder="e.g., John & Mary" value="" />
           <div class="hint">Who is the card from?</div>
         </div>
 
         <div class="button-group">
           <button type="submit" class="btn-generate">🎁 Generate URL</button>
-          <button type="button" class="btn-reset" onclick="resetForm()">
-            🔄 Reset
-          </button>
+          <button type="button" class="btn-reset" onclick="resetForm()">🔄 Reset</button>
         </div>
       </form>
 
       <div id="resultSection" class="result-section">
         <div class="result-label">✅ Your personalized card URL:</div>
         <div class="url-box" id="generatedURL"></div>
-        <button class="copy-button" onclick="copyURL()">
-          📋 Copy to Clipboard
-        </button>
-        <a href="#" target="_blank" id="previewLink" class="preview-button"
-          >👁️ Preview Card</a
-        >
+        <button class="copy-button" onclick="copyURL()">📋 Copy to Clipboard</button>
+        <a href="#" target="_blank" id="previewLink" class="preview-button">👁️ Preview Card</a>
       </div>
     </div>
 
@@ -354,10 +311,7 @@ Möge Ihre Weihnachtszeit voller Wärme, Lachen und Liebe sein. Wir wünsche Ihn
         const encodedMsg = btoa(jsonString);
 
         // Get the base URL (current page's directory)
-        const baseURL = window.location.href.replace(
-          "url-generator.html",
-          "index.html"
-        );
+        const baseURL = window.location.href.replace("url-generator.html", "index.html");
 
         // Generate full URL with parameter
         const fullURL = `${baseURL}?msg=${encodedMsg}`;
@@ -398,15 +352,12 @@ Möge Ihre Weihnachtszeit voller Wärme, Lachen und Liebe sein. Wir wünsche Ihn
         document.getElementById("cardForm").reset();
         resultSection.classList.remove("show");
 
-        // Reset to default values
-        document.getElementById("title").value = "Frohe Weihnachten!";
-        document.getElementById("subtitle").value =
-          "Erholsame Feiertage und ein glückliches neues Jahr.";
-        document.getElementById("message").value =
-          "Möge Ihre Weihnachtszeit voller Wärme, Lachen und Liebe sein. Wir wünsche Ihnen und Ihren Lieben eine wundervolle Weihnachtszeit und ein glückliches, gesundes neues Jahr!";
-        document.getElementById("closing").value =
-          "Mit Liebe und besten Wünschen,";
-        document.getElementById("signature").value = "Ihr HCIUSE-Team";
+        // Reset to empty values (so defaults from index.html are used)
+        document.getElementById("title").value = "";
+        document.getElementById("subtitle").value = "";
+        document.getElementById("message").value = "";
+        document.getElementById("closing").value = "";
+        document.getElementById("signature").value = "";
       }
     </script>
   </body>
