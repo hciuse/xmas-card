@@ -269,10 +269,62 @@
       }
 
       // ==========================================
+      // URL Parameter Handling (Base64 Encoded)
+      // ==========================================
+
+      /**
+       * Decodes base64 encoded URL parameter and updates card text
+       */
+      function loadCustomTextFromURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const encodedMsg = urlParams.get("msg");
+
+        if (!encodedMsg) {
+          return; // No custom message, use defaults
+        }
+
+        try {
+          // Decode base64
+          const decodedJSON = atob(encodedMsg);
+          const customText = JSON.parse(decodedJSON);
+
+          // Update title if provided
+          if (customText.title) {
+            const titleElement = document.querySelector(".card__title");
+            if (titleElement) titleElement.textContent = customText.title;
+          }
+
+          // Update subtitle if provided
+          if (customText.subtitle) {
+            const subtitleElement = document.querySelector(".card__subtitle");
+            if (subtitleElement) subtitleElement.textContent = customText.subtitle;
+          }
+
+          // Update main message if provided
+          if (customText.message) {
+            const messageElement = document.querySelector(".card__message p:first-child");
+            if (messageElement) messageElement.textContent = customText.message;
+          }
+
+          // Update signature if provided
+          if (customText.signature) {
+            const signatureElement = document.querySelector(".card__signature strong");
+            if (signatureElement) signatureElement.textContent = customText.signature;
+          }
+
+          console.log("Custom text loaded from URL parameters");
+        } catch (error) {
+          console.error("Failed to decode URL parameters:", error);
+          console.log("Using default text");
+        }
+      }
+
+      // ==========================================
       // Initialize on page load
       // ==========================================
       window.addEventListener("load", () => {
         document.body.classList.add("loaded");
+        loadCustomTextFromURL();
         initElves();
       });
     </script>

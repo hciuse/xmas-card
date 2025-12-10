@@ -9,6 +9,7 @@ A beautiful, personalized static HTML Christmas card that you can send to friend
 - 🖼️ **Customizable Background** - Add your own festive image
 - 🎵 **Holiday Music** - Play your favorite Christmas song
 - 🎅 **Dancing Elves** - Add photos of faces on animated Christmas elves!
+- 🔗 **Personalized URL Links** - Create custom messages via encoded URL parameters ✨ **NEW!**
 - 📱 **Fully Responsive** - Works on desktop, tablet, and mobile
 - ♿ **Accessible** - Keyboard navigation and screen reader support
 - 🚀 **No Build Required** - Pure HTML/CSS/JavaScript
@@ -123,6 +124,8 @@ assets/images/faces/
 
 ### 4. Personalize the Message
 
+**Option A: Edit the HTML directly**
+
 Open `index.html` and edit the text:
 
 **Line 19-21** - Main greeting:
@@ -143,6 +146,38 @@ Open `index.html` and edit the text:
 ```html
 <strong>Your Name</strong>
 ```
+
+**Option B: Use URL Parameters (Personalized Links!)** ✨ **NEW!**
+
+Create personalized card links where each recipient gets a unique message - and they can't preview the text in the URL because it's encoded!
+
+**How to use:**
+1. Open `url-generator.html` in your web browser
+2. Fill in your personalized message fields:
+   - Card Title (e.g., "Happy Holidays Sarah!")
+   - Subtitle (e.g., "Wishing you an amazing 2024")
+   - Main Message (your personal message)
+   - Signature (your name)
+3. Click "🎁 Generate URL"
+4. Copy the generated link and share it!
+
+**Example URL:**
+```
+index.html?msg=eyJ0aXRsZSI6IkhhcHB5IEhvbGlkYXlzISIsInN1YnRpdGxlIjoiVGVzdGluZyB0aGUgZmVhdHVyZSIsIm1lc3NhZ2UiOiJUaGlzIGlzIGEgdGVzdCBvZiB0aGUgVVJMIHBhcmFtZXRlciBlbmNvZGluZy4gSWYgeW91IHNlZSB0aGlzLCBpdCB3b3JrcyEiLCJzaWduYXR1cmUiOiJUaGUgRGV2ZWxvcGVyIn0=
+```
+
+**Benefits:**
+- ✅ Create personalized cards for different recipients
+- ✅ Text is base64-encoded so it can't be easily previewed
+- ✅ No need to edit HTML for each person
+- ✅ Perfect for hosting one card and sharing multiple personalized links
+- ✅ Easy to use with the included URL generator tool
+
+**Tips:**
+- You can customize all fields (title, subtitle, message, signature)
+- Leave any field blank to use the default text from `index.html`
+- The URL generator includes a preview button to test your card
+- Works great with GitHub Pages or any hosted version
 
 ### 5. Customize Colors and Styling
 
@@ -206,6 +241,7 @@ This repository includes a GitHub Actions workflow that **automatically deploys*
 ```
 xmas-card/
 ├── index.html              # Main HTML file (open this!)
+├── url-generator.html      # URL generator tool for personalized links ✨ NEW
 ├── styles.css              # All the styling
 ├── README.md               # This file
 ├── CLAUDE.md               # AI assistant documentation
@@ -264,6 +300,13 @@ Works in all modern browsers:
 - Clear browser cache (Ctrl+F5 or Cmd+Shift+R)
 - Ensure `styles.css` is in the same folder as `index.html`
 - Check browser console for CSS errors
+
+**URL parameter not working?**
+- Check that the URL includes `?msg=` followed by the encoded text
+- Verify the base64 encoding is valid (use the `url-generator.html` tool)
+- Open browser console (F12) to see any decoding errors
+- Make sure you're using the full URL including the parameter
+- Test the URL in a private/incognito window to rule out caching issues
 
 ## 📝 License
 
