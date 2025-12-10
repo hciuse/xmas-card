@@ -3,13 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Merry Christmas! A festive holiday greeting card" />
+    <meta
+      name="description"
+      content="Merry Christmas! A festive holiday greeting card"
+    />
     <title>Merry Christmas! 🎄</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <!-- Background Image Container -->
-    <div class="background-container" role="img" aria-label="Festive Christmas background"></div>
+    <div
+      class="background-container"
+      role="img"
+      aria-label="Festive Christmas background"
+    ></div>
 
     <!-- Dancing Elves Container -->
     <div id="elvesContainer" class="elves-container" aria-hidden="true"></div>
@@ -29,8 +36,9 @@
         <!-- Main Message -->
         <section class="card__message">
           <p>
-            May your holidays be filled with warmth, laughter, and love. Wishing you and your loved ones a wonderful Christmas season and a
-            happy, healthy New Year!
+            May your holidays be filled with warmth, laughter, and love. Wishing
+            you and your loved ones a wonderful Christmas season and a happy,
+            healthy New Year!
           </p>
           <p class="card__signature">
             <span class="card__closing">With love and best wishes,</span><br />
@@ -48,7 +56,11 @@
 
       <!-- Audio Controls -->
       <div class="audio-controls">
-        <button id="audioToggle" class="audio-button" aria-label="Play Christmas music">
+        <button
+          id="audioToggle"
+          class="audio-button"
+          aria-label="Play Christmas music"
+        >
           <span class="play-icon">🎵</span>
           <span class="button-text">Play Music</span>
         </button>
@@ -69,7 +81,16 @@
       // ==========================================
       // CONFIGURATION: Add your face image filenames here!
       // ==========================================
-      const FACE_IMAGES = ["andré.png", "leonard.jpg", "lilian.jpg", "lukas.jpeg", "maged.jpg", "marthe.jpg", "marvin.png", "toni.jpg"];
+      const FACE_IMAGES = [
+        "andré.png",
+        "leonard2.png",
+        "lilian2.png",
+        "lukas2.png",
+        "maged2.png",
+        "marthe2.png",
+        "marvin2.png",
+        "toni2.png",
+      ];
 
       // ==========================================
       // Audio Control
@@ -91,7 +112,9 @@
         } else {
           audio.play().catch((error) => {
             console.log("Audio playback failed:", error);
-            alert("Unable to play audio. Please check that the music file exists in assets/audio/music.mp3");
+            alert(
+              "Unable to play audio. Please check that the music file exists in assets/audio/music.mp3"
+            );
           });
           buttonText.textContent = "Pause Music";
           playIcon.textContent = "⏸️";
@@ -160,7 +183,9 @@
        */
       function initElves() {
         if (FACE_IMAGES.length === 0) {
-          console.log("No face images configured. Add filenames to FACE_IMAGES array in index.html");
+          console.log(
+            "No face images configured. Add filenames to FACE_IMAGES array in index.html"
+          );
           return;
         }
 
@@ -297,12 +322,15 @@
           // Update subtitle if provided
           if (customText.subtitle) {
             const subtitleElement = document.querySelector(".card__subtitle");
-            if (subtitleElement) subtitleElement.textContent = customText.subtitle;
+            if (subtitleElement)
+              subtitleElement.textContent = customText.subtitle;
           }
 
           // Update main message if provided
           if (customText.message) {
-            const messageElement = document.querySelector(".card__message p:first-child");
+            const messageElement = document.querySelector(
+              ".card__message p:first-child"
+            );
             if (messageElement) messageElement.textContent = customText.message;
           }
 
@@ -314,8 +342,11 @@
 
           // Update signature if provided
           if (customText.signature) {
-            const signatureElement = document.querySelector(".card__signature strong");
-            if (signatureElement) signatureElement.textContent = customText.signature;
+            const signatureElement = document.querySelector(
+              ".card__signature strong"
+            );
+            if (signatureElement)
+              signatureElement.textContent = customText.signature;
           }
 
           console.log("Custom text loaded from URL parameters");
