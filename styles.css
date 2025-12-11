@@ -140,7 +140,7 @@ body.loaded {
   backdrop-filter: blur(10px);
   border-radius: 20px;
   padding: 3rem 2.5rem;
-  max-width: 600px;
+  max-width: 750px;
   width: 100%;
   box-shadow: 0 20px 60px var(--shadow-color);
   animation: fadeInScale 1s ease-out;

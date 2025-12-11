@@ -9,6 +9,7 @@
     />
     <title>Merry Christmas! 🎄</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="config.js"></script>
   </head>
   <body>
     <!-- Background Image Container -->
@@ -36,23 +37,24 @@
       <div class="card">
         <!-- Greeting Header -->
         <header class="card__header">
-          <h1 class="card__title">Frohe Weihnachten!</h1>
-          <p class="card__subtitle">
+          <h1 class="card__title" id="defaultTitle">Frohe Weihnachten!</h1>
+          <p class="card__subtitle" id="defaultSubtitle">
             Erholsame Feiertage und ein glückliches neues Jahr.
           </p>
         </header>
 
         <!-- Main Message -->
         <section class="card__message">
-          <p>
+          <p id="defaultMessage">
             Möge Ihre Weihnachtszeit voller Wärme, Lachen und Liebe sein. Wir
             wünsche Ihnen und Ihren Lieben eine wundervolle Weihnachtszeit und
             ein glückliches, gesundes neues Jahr!
           </p>
           <p class="card__signature">
-            <span class="card__closing">Mit Liebe und besten Wünschen,</span
+            <span class="card__closing" id="defaultClosing"
+              >Mit Liebe und besten Wünschen,</span
             ><br />
-            <strong>Ihr HCIUSE-Team</strong>
+            <strong id="defaultSignature">Ihr HCIUSE-Team</strong>
           </p>
         </section>
 
@@ -83,7 +85,7 @@
 
     <!-- Footer -->
     <footer class="footer">
-      <p class="footer__text">Made with ❤️ for the holidays</p>
+      <p class="footer__text">Made with ❤️ for our friends and colleagues!</p>
     </footer>
 
     <!-- JavaScript for Audio Control and Dancing Elves -->
@@ -382,6 +384,24 @@
       // ==========================================
       window.addEventListener("load", () => {
         document.body.classList.add("loaded");
+
+        // Set default values from config if elements exist
+        if (document.getElementById("defaultTitle"))
+          document.getElementById("defaultTitle").textContent =
+            DEFAULT_MESSAGES.title;
+        if (document.getElementById("defaultSubtitle"))
+          document.getElementById("defaultSubtitle").textContent =
+            DEFAULT_MESSAGES.subtitle;
+        if (document.getElementById("defaultMessage"))
+          document.getElementById("defaultMessage").textContent =
+            DEFAULT_MESSAGES.message;
+        if (document.getElementById("defaultClosing"))
+          document.getElementById("defaultClosing").textContent =
+            DEFAULT_MESSAGES.closing;
+        if (document.getElementById("defaultSignature"))
+          document.getElementById("defaultSignature").textContent =
+            DEFAULT_MESSAGES.signature;
+
         loadCustomTextFromURL();
         initElves();
       });

@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Christmas Card URL Generator</title>
+    <script src="config.js"></script>
     <style>
       * {
         margin: 0;
@@ -245,12 +246,7 @@
       <form id="cardForm">
         <div class="form-group">
           <label for="title">Card Title</label>
-          <input
-            type="text"
-            id="title"
-            placeholder="e.g., Merry Christmas!"
-            value="Frohe Weihnachten!"
-          />
+          <input type="text" id="title" placeholder="e.g., Merry Christmas!" />
           <div class="hint">
             Main greeting text (leave blank to use default)
           </div>
@@ -262,7 +258,6 @@
             type="text"
             id="subtitle"
             placeholder="e.g., Wishing you joy and happiness"
-            value="Erholsame Feiertage und ein glückliches neues Jahr."
           />
           <div class="hint">Subtitle text below the title</div>
         </div>
@@ -272,9 +267,7 @@
           <textarea
             id="message"
             placeholder="Your personalized holiday message..."
-          >
-Möge Ihre Weihnachtszeit voller Wärme, Lachen und Liebe sein. Wir wünsche Ihnen und Ihren Lieben eine wundervolle Weihnachtszeit und ein glückliches, gesundes neues Jahr!</textarea
-          >
+          ></textarea>
           <div class="hint">The main body of your card</div>
         </div>
 
@@ -284,7 +277,6 @@ Möge Ihre Weihnachtszeit voller Wärme, Lachen und Liebe sein. Wir wünsche Ihn
             type="text"
             id="closing"
             placeholder="e.g., With love and best wishes,"
-            value="Mit Liebe und besten Wünschen,"
           />
           <div class="hint">
             Text before your signature (e.g., "Love,", "Warmest regards,")
@@ -293,12 +285,7 @@ Möge Ihre Weihnachtszeit voller Wärme, Lachen und Liebe sein. Wir wünsche Ihn
 
         <div class="form-group">
           <label for="signature">Signature (Your Name)</label>
-          <input
-            type="text"
-            id="signature"
-            placeholder="e.g., John & Mary"
-            value="Ihr HCIUSE-Team"
-          />
+          <input type="text" id="signature" placeholder="e.g., John & Mary" />
           <div class="hint">Who is the card from?</div>
         </div>
 
@@ -337,6 +324,18 @@ Möge Ihre Weihnachtszeit voller Wärme, Lachen und Liebe sein. Wir wünsche Ihn
       const generatedURLDiv = document.getElementById("generatedURL");
       const previewLink = document.getElementById("previewLink");
 
+      // Initialize form with default values
+      function initializeForm() {
+        document.getElementById("title").value = DEFAULT_MESSAGES.title;
+        document.getElementById("subtitle").value = DEFAULT_MESSAGES.subtitle;
+        document.getElementById("message").value = DEFAULT_MESSAGES.message;
+        document.getElementById("closing").value = DEFAULT_MESSAGES.closing;
+        document.getElementById("signature").value = DEFAULT_MESSAGES.signature;
+      }
+
+      // Initialize on page load
+      window.addEventListener("load", initializeForm);
+
       form.addEventListener("submit", (e) => {
         e.preventDefault();
         generateURL();
@@ -363,10 +362,10 @@ Möge Ihre Weihnachtszeit voller Wärme, Lachen und Liebe sein. Wir wünsche Ihn
         const encodedMsg = encodeBase64Utf8(jsonString);
 
         // Get the base URL (current page's directory)
-        const baseURL = window.location.href.replace(
-          "url-generator.html",
-          "index.html"
-        );
+        const currentURL = new URL(window.location.href);
+        const baseURL =
+          currentURL.origin +
+          currentURL.pathname.replace(/url-generator\.html.*$/, "index.html");
 
         // Generate full URL with parameter
         const fullURL = `${baseURL}?msg=${encodedMsg}`;
@@ -407,15 +406,12 @@ Möge Ihre Weihnachtszeit voller Wärme, Lachen und Liebe sein. Wir wünsche Ihn
         document.getElementById("cardForm").reset();
         resultSection.classList.remove("show");
 
-        // Reset to German default values
-        document.getElementById("title").value = "Frohe Weihnachten!";
-        document.getElementById("subtitle").value =
-          "Erholsame Feiertage und ein glückliches neues Jahr.";
-        document.getElementById("message").value =
-          "Möge Ihre Weihnachtszeit voller Wärme, Lachen und Liebe sein. Wir wünsche Ihnen und Ihren Lieben eine wundervolle Weihnachtszeit und ein glückliches, gesundes neues Jahr!";
-        document.getElementById("closing").value =
-          "Mit Liebe und besten Wünschen,";
-        document.getElementById("signature").value = "Ihr HCIUSE-Team";
+        // Reset to default values from config
+        document.getElementById("title").value = DEFAULT_MESSAGES.title;
+        document.getElementById("subtitle").value = DEFAULT_MESSAGES.subtitle;
+        document.getElementById("message").value = DEFAULT_MESSAGES.message;
+        document.getElementById("closing").value = DEFAULT_MESSAGES.closing;
+        document.getElementById("signature").value = DEFAULT_MESSAGES.signature;
       }
     </script>
   </body>
