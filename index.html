@@ -88,6 +88,13 @@
 
     <!-- JavaScript for Audio Control and Dancing Elves -->
     <script>
+      // Decode UTF-8 text from base64 (matches generator)
+      function decodeBase64Utf8(base64String) {
+        const binary = atob(base64String);
+        const bytes = Uint8Array.from(binary, (c) => c.charCodeAt(0));
+        return new TextDecoder().decode(bytes);
+      }
+
       // ==========================================
       // CONFIGURATION: Add your face image filenames here!
       // ==========================================
@@ -322,8 +329,8 @@
         console.log("Decoding custom message...", encodedMsg);
 
         try {
-          // Decode base64
-          const decodedJSON = atob(encodedMsg);
+          // Decode base64 using UTF-8 aware helper
+          const decodedJSON = decodeBase64Utf8(encodedMsg);
           console.log("Decoded custom message JSON:", decodedJSON);
           const customText = JSON.parse(decodedJSON);
 
